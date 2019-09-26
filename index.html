@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reproductor</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./src/DOMGui.js"></script>
+    <script src="./src/MultimediaPlayer.js"></script>
+    <script src="./src/AudioPlayer.js"></script>
+</head>
+
+<body>
+        
+    <div id="content">
+        <audio controls></audio>
+        <div id="header">
+            <div id="headerBar">
+                <div class="menu">
+                    <svg version="1.1"   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="#000000" d="M1 3h14v3h-14zM1 7h14v3h-14zM1 11h14v3h-14z"></path>
+                    </svg>
+                </div>
+               <div class="title"><b>CUB3DPlayer</b></div>
+                
+                <svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+                    <path fill="#000000" d="M15.504 13.616l-3.79-3.223c-0.392-0.353-0.811-0.514-1.149-0.499 0.895-1.048 1.435-2.407 1.435-3.893 0-3.314-2.686-6-6-6s-6 2.686-6 6 2.686 6 6 6c1.486 0 2.845-0.54 3.893-1.435-0.016 0.338 0.146 0.757 0.499 1.149l3.223 3.79c0.552 0.613 1.453 0.665 2.003 0.115s0.498-1.452-0.115-2.003zM6 10c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"></path>
+                </svg>
+            </div>
+            <div id="titleAlbum">
+                <div class="title">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="13" height="13" viewBox="0 0 16 16">
+                        <path fill="#000000" d="M15 0h1v11.5c0 1.381-1.567 2.5-3.5 2.5s-3.5-1.119-3.5-2.5c0-1.381 1.567-2.5 3.5-2.5 0.979 0 1.865 0.287 2.5 0.751v-5.751l-8 1.778v7.722c0 1.381-1.567 2.5-3.5 2.5s-3.5-1.119-3.5-2.5c0-1.381 1.567-2.5 3.5-2.5 0.979 0 1.865 0.287 2.5 0.751v-9.751l9-2z"></path>
+                    </svg>
+                    <div>Now Playing</div>
+                </div>
+            </div>
+            <div id="imagenAlbum">
+                <div class="icon left">
+                    <svg version="1.1" id="equalizer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="#000000" d="M7 2v-0.25c0-0.413-0.338-0.75-0.75-0.75h-2.5c-0.413 0-0.75 0.337-0.75 0.75v0.25h-3v2h3v0.25c0 0.412 0.337 0.75 0.75 0.75h2.5c0.412 0 0.75-0.338 0.75-0.75v-0.25h9v-2h-9zM4 4v-2h2v2h-2zM13 6.75c0-0.412-0.338-0.75-0.75-0.75h-2.5c-0.412 0-0.75 0.338-0.75 0.75v0.25h-9v2h9v0.25c0 0.412 0.338 0.75 0.75 0.75h2.5c0.412 0 0.75-0.338 0.75-0.75v-0.25h3v-2h-3v-0.25zM10 9v-2h2v2h-2zM7 11.75c0-0.412-0.338-0.75-0.75-0.75h-2.5c-0.413 0-0.75 0.338-0.75 0.75v0.25h-3v2h3v0.25c0 0.412 0.337 0.75 0.75 0.75h2.5c0.412 0 0.75-0.338 0.75-0.75v-0.25h9v-2h-9v-0.25zM4 14v-2h2v2h-2z"></path>
+                    </svg>
+                </div>
+                <div class="img">
+                    <img id="albumImg" src="./assets/img/album.png">
+                </div>
+                <div class="icon right">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="#000000" d="M11.243 12.993c-0.192 0-0.384-0.073-0.53-0.22-0.293-0.293-0.293-0.768 0-1.061 2.047-2.047 2.047-5.378 0-7.425-0.293-0.293-0.293-0.768 0-1.061s0.768-0.293 1.061 0c1.275 1.275 1.977 2.97 1.977 4.773s-0.702 3.498-1.977 4.773c-0.146 0.146-0.338 0.22-0.53 0.22v0zM8.578 11.578c-0.192 0-0.384-0.073-0.53-0.22-0.293-0.293-0.293-0.768 0-1.061 1.267-1.267 1.267-3.329 0-4.596-0.293-0.293-0.293-0.768 0-1.061s0.768-0.293 1.061 0c1.852 1.852 1.852 4.865 0 6.718-0.146 0.146-0.338 0.22-0.53 0.22z"></path>
+                        <path fill="#000000" d="M6.5 15c-0.13 0-0.258-0.051-0.354-0.146l-3.854-3.854h-1.793c-0.276 0-0.5-0.224-0.5-0.5v-5c0-0.276 0.224-0.5 0.5-0.5h1.793l3.854-3.854c0.143-0.143 0.358-0.186 0.545-0.108s0.309 0.26 0.309 0.462v13c0 0.202-0.122 0.385-0.309 0.462-0.062 0.026-0.127 0.038-0.191 0.038z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div id="nombreAudio">
+                    <div id="album" class="title"><b>Koan Sound</b></div> 
+                    <div id="title" class="title"><b>- Meanwhile in the future</b></div>
+                    <div id="artist" class="subtitle">Funkblaster</div>
+            </div>
+            <div id="animacion">
+                <div class="barras time1"></div>
+                <div class="barras time2"></div>
+                <div class="barras time3"></div>
+                <div class="barras time1"></div>
+                <div class="barras time3"></div>
+                <div class="barras time2"></div>
+                <div class="barras time1"></div>
+                <div class="barras time3"></div>
+                <div class="barras time1"></div>
+                <div class="barras time3"></div>
+            </div>
+        </div>
+        <div id="contentControllers">
+            <div id="iconosPlay">
+                <svg version="1.1" class="blue" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10" viewBox="0 0 16 16">
+                    <path fill="#000000" d="M16 6h-6l2.243-2.243c-1.133-1.133-2.64-1.757-4.243-1.757s-3.109 0.624-4.243 1.757c-1.133 1.133-1.757 2.64-1.757 4.243s0.624 3.109 1.757 4.243c1.133 1.133 2.64 1.757 4.243 1.757s3.109-0.624 4.243-1.757c0.095-0.095 0.185-0.192 0.273-0.292l1.505 1.317c-1.466 1.674-3.62 2.732-6.020 2.732-4.418 0-8-3.582-8-8s3.582-8 8-8c2.209 0 4.209 0.896 5.656 2.344l2.343-2.344v6z"></path>
+                </svg>
+                <svg version="1.1" id="spiner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="12" viewBox="0 0 16 16">
+                    <path fill="#000000" d="M12 11h-1.586l-2.5-2.5 2.5-2.5h1.586v2.5l3.5-3.5-3.5-3.5v2.5h-2c-0.265 0-0.52 0.105-0.707 0.293l-2.793 2.793-2.793-2.793c-0.188-0.188-0.442-0.293-0.707-0.293h-3v2h2.586l2.5 2.5-2.5 2.5h-2.586v2h3c0.265 0 0.52-0.105 0.707-0.293l2.793-2.793 2.793 2.793c0.188 0.188 0.442 0.293 0.707 0.293h2v2.5l3.5-3.5-3.5-3.5v2.5z"></path>
+                </svg>
+            </div>
+            <div class="barra">
+                <div id="progressBar" class="cargaBarra"></div>
+            </div>
+            <div  id="timeAudio">
+                <div id="duracionActual" class="time left">
+                    0:00
+                </div>    
+                <div id="duracion" class="time right">
+                    3:45
+                </div>    
+            </div>
+            <div id="btnAudio">
+                <div id="previus" class="icon">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 16 16">
+                        <path fill="#000000" d="M4 14v-12h2v5.5l5-5v11l-5-5v5.5z"></path>
+                    </svg>
+                </div>
+                
+                <div id="playpause" class="icon borderRadius">
+                    <svg class="play visible" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 16 16">
+                        <path fill="#000000" d="M3 2l10 6-10 6z"></path>
+                    </svg>
+                    <svg class="pause" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 16 16">
+                        <path fill="#000000" d="M2 2h5v12h-5zM9 2h5v12h-5z"></path>
+                    </svg>
+                </div>
+                
+                <div id="next" class="icon">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25" viewBox="0 0 16 16">
+                        <path fill="#000000" d="M12 2v12h-2v-5.5l-5 5v-11l5 5v-5.5z"></path>
+                    </svg>
+                </div>
+                            
+            </div>
+        </div>
+    </div>
+    <div id="playlist">
+
+        <ol id="listaReproduccion">
+            <li class="trackLi playing"><a class="track" href="./assets/songs/Jaymes_Young_What_Is_Love.mp3"><span class="title">What Is Love</span> - <span class="artist">James Young</span></a> <span class="time">3:27</span></li>
+            <li class="trackLi"><a class="track" href="./assets/songs/David Garrett - Viva La Vida.mp3">
+                <span class="title">Viva La Vida</span>
+                 - <span class="artist">David Garrett</span></a> 
+                <span class="time">4:28</span></li>
+        </ol>
+
+        <div id="areaArrastre" >
+        </div>
+    </div>
+    
+    <script src="src/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  background: #4cb892;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+#playlist {
+  direction: rtl;
+  z-index: 1;
+  position: absolute;
+  width: 360px;
+  height: 600px;
+  border-radius: 5px 0 0 5px;
+  background: white;
+}
+#playlist #areaArrastre {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 0;
+  height: 150px;
+  background: url(../assets/img/zonaDrag.jpeg) no-repeat;
+  background-size: 100% 100%;
+  border: solid #acacac;
+  border-radius: 10px;
+}
+#playlist.show {
+  transform: translateX(-180px);
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease-in-out, 0s box-shadow 0.05s;
+}
+#playlist ol {
+  padding-right: 30px;
+  width: 100%;
+  height: 400px;
+  list-style-type: none;
+  margin: 0;
+  font-size: 16px;
+  overflow-y: auto;
+  transition: transform 0.4s ease-in-out, 0s box-shadow 0.3s;
+}
+#playlist ol li {
+  padding: 12px 15px;
+  height: 50px;
+  position: relative;
+}
+#playlist ol li:hover {
+  background-color: rgba(34, 34, 34, 0.08);
+}
+
+.play {
+  display: none;
+}
+
+.pause {
+  display: none;
+}
+
+.visible {
+  display: block !important;
+}
+
+#content {
+  z-index: 2;
+  max-width: 380px;
+  width: 80%;
+  background: #3a4e47;
+  border-radius: 2%;
+}
+#content audio {
+  position: absolute;
+  height: 0;
+  width: 0;
+  z-index: 1;
+}
+#content.show {
+  transform: translateX(180px);
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease-in-out, 0s box-shadow 0.05s;
+}
+#content #header {
+  background-image: url("../assets/img/bg.png");
+  background-size: 100% 100%;
+  border-top-left-radius: 2%;
+  border-top-right-radius: 2%;
+}
+#content #header #headerBar {
+  min-height: 70px;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+#content #header #headerBar .title {
+  font-size: 12px;
+  color: white;
+}
+#content #header #headerBar svg path {
+  fill: white;
+}
+#content #header #headerBar svg path:hover {
+  fill: #44f5b7;
+}
+#content #header #titleAlbum {
+  display: flex;
+  justify-content: center;
+  min-height: 110px;
+  color: white;
+}
+#content #header #titleAlbum .title {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+}
+#content #header #titleAlbum .title div {
+  margin-left: 3px;
+}
+#content #header #titleAlbum .title svg path {
+  fill: white;
+}
+#content #header #titleAlbum .title:hover {
+  color: #44f5b7;
+}
+#content #header #titleAlbum .title:hover svg path {
+  fill: #44f5b7;
+}
+#content #header #imagenAlbum {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+#content #header #imagenAlbum .left {
+  border-top-right-radius: 45%;
+  border-bottom-right-radius: 45%;
+}
+#content #header #imagenAlbum .right {
+  border-top-left-radius: 45%;
+  border-bottom-left-radius: 45%;
+}
+#content #header #imagenAlbum .icon {
+  min-height: 50px;
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+#content #header #imagenAlbum .icon:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+#content #header #imagenAlbum .icon:hover svg path {
+  fill: #44f5b7;
+}
+#content #header #imagenAlbum .icon svg path {
+  fill: white;
+}
+#content #header #imagenAlbum .img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#content #header #imagenAlbum .img img {
+  width: 35%;
+}
+#content #header #nombreAudio {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#content #header #nombreAudio .title {
+  font-size: 12px;
+}
+#content #header #nombreAudio .subtitle {
+  font-size: 10px;
+}
+#content #header #animacion {
+  display: flex;
+  transform: rotatez(180deg);
+  height: 100px;
+}
+#content #header #animacion .barras {
+  background: white;
+  opacity: 0.1;
+  width: 100%;
+}
+#content #header #animacion .time1 {
+  animation: barras 0.7s infinite alternate;
+  animation-timing-function: linear;
+}
+#content #header #animacion .time2 {
+  animation-timing-function: ease-out;
+  animation: barras 0.6s infinite alternate;
+}
+#content #header #animacion .time3 {
+  animation-timing-function: ease-in-out;
+  animation: barras2 0.8s infinite alternate;
+}
+#content #contentControllers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#content #contentControllers #iconosPlay {
+  padding: 20px;
+}
+#content #contentControllers #iconosPlay .blue path {
+  fill: #44f5b7;
+  opacity: 1;
+}
+#content #contentControllers #iconosPlay svg {
+  margin: 2px;
+}
+#content #contentControllers #iconosPlay svg path {
+  fill: white;
+  opacity: 0.4;
+}
+#content #contentControllers .barra {
+  height: 4px;
+  width: 80%;
+  background: #2c3e38;
+  border-radius: 10px;
+}
+#content #contentControllers .barra .cargaBarra {
+  width: 0;
+  height: 100%;
+  border-radius: 10px;
+  background: #44f5b7;
+}
+#content #contentControllers #timeAudio {
+  width: 80%;
+  display: flex;
+  align-items: flex-end;
+}
+#content #contentControllers #timeAudio .time {
+  width: 100%;
+  color: white;
+  font-size: 10px;
+  margin-top: 5px;
+}
+#content #contentControllers #timeAudio .left {
+  text-align: left;
+}
+#content #contentControllers #timeAudio .right {
+  text-align: right;
+}
+#content #contentControllers #btnAudio {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  width: 45%;
+}
+#content #contentControllers #btnAudio .icon svg {
+  margin: 2px;
+}
+#content #contentControllers #btnAudio .icon svg path {
+  fill: white;
+}
+#content #contentControllers #btnAudio .icon svg path:hover {
+  fill: #44f5b7;
+}
+#content #contentControllers #btnAudio .borderRadius {
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid;
+  border-radius: 100%;
+  border-color: white;
+  background: white;
+}
+#content #contentControllers #btnAudio .borderRadius:hover {
+  background: #44f5b7;
+  border-color: #44f5b7;
+}
+#content #contentControllers #btnAudio .borderRadius svg {
+  margin: 2px;
+}
+#content #contentControllers #btnAudio .borderRadius svg path {
+  fill: #2c3e38;
+}
+#content #contentControllers #btnAudio .borderRadius svg path:hover {
+  fill: #2c3e38;
+}
+
+svg {
+  cursor: pointer;
+}
+
+@keyframes barras {
+  0% {
+    height: 10px;
+  }
+  20% {
+    height: 20px;
+  }
+  30% {
+    height: 30px;
+  }
+  40% {
+    height: 40px;
+  }
+  50% {
+    height: 50px;
+  }
+  70% {
+    height: 70px;
+  }
+  80% {
+    height: 80px;
+  }
+  90% {
+    height: 90px;
+  }
+  100% {
+    height: 100px;
+  }
+}
+@keyframes barras2 {
+  100% {
+    height: 10px;
+  }
+  90% {
+    height: 30px;
+  }
+  80% {
+    height: 40px;
+  }
+  50% {
+    height: 60px;
+  }
+  40% {
+    height: 70px;
+  }
+  20% {
+    height: 90px;
+  }
+  10% {
+    height: 100px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
