@@ -13,6 +13,12 @@ body {
   min-height: 100vh;
 }
 
+.track {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
 #playlist {
   direction: rtl;
   z-index: 1;
@@ -20,7 +26,7 @@ body {
   width: 360px;
   height: 600px;
   border-radius: 5px 0 0 5px;
-  background: white;
+  background: linear-gradient(#40525E, #57B992);
 }
 #playlist #areaArrastre {
   width: 80%;
@@ -28,7 +34,7 @@ body {
   margin-right: 10%;
   margin-bottom: 0;
   height: 150px;
-  background: url(../assets/img/zonaDrag.jpeg) no-repeat;
+  background: url(../assets/img/zonaDrag.png) no-repeat;
   background-size: 100% 100%;
   border: solid #acacac;
   border-radius: 10px;

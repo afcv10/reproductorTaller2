@@ -27,29 +27,5 @@ let myAudioPlayer = new MultimediaPlayer('#content audio', tracks, {
     progressBar: document.querySelector('.cargaBarra'),
     barra: document.querySelector('.barra'),
     tracks: document.querySelectorAll('.trackLi'),
+    areaArrastre:document.querySelector('#areaArrastre')
 });
-
-let a = document.querySelector('#areaArrastre');
-a.ondrop=function(e){
-    e.preventDefault();
-    let files= e.dataTransfer.files;
-    let listaReproduccion=document.querySelector("#listaReproduccion");
-    for (const file of files) {
-        //console.log(file);
-        var reader  = new FileReader();
-        reader.onloadend = function (e) {
-            audio= e.target.result;
-            let elemento=`<li class='trackLi'><a class='track' href='${audio}'><span class='title'>What Is Love</span> - <span class='artist'>James Young</span></a> <span class='time'>3:27</span></li>`;
-            listaReproduccion.innerHTML=listaReproduccion.innerHTML+elemento;
-            tracks.push(audio);
-        }
-        if (file) {
-            reader.readAsDataURL(file);
-        } 
-
-    }
-    
-};
-a.ondragover=function(e){
-    e.preventDefault();
- };
